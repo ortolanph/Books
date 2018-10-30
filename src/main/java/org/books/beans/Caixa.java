@@ -2,9 +2,19 @@ package org.books.beans;
 
 public class Caixa {
 
+    private Long id;
+
     private String titulo;
 
     private String descricao;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -24,8 +34,10 @@ public class Caixa {
 
     @Override public String toString() {
         return new StringBuilder("Caixa{")
-            .append("titulo='").append(titulo).append('\'')
+            .append("id=").append(id)
+            .append(", titulo='").append(titulo).append('\'')
             .append(", descricao='").append(descricao).append('\'')
-            .append('}').toString();
+            .append('}')
+            .toString();
     }
 }
