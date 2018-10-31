@@ -9,6 +9,7 @@
 	<parameter name="PARAM_CAIXA" class="java.lang.String"/>
 	<parameter name="PARAM_QR_CODE" class="java.io.InputStream"/>
 	<parameter name="PARAM_DESCRICAO" class="java.lang.String"/>
+	<parameter name="LOGO" class="java.io.InputStream" />
 	<field name="id" class="java.lang.String"/>
 	<field name="titulo" class="java.lang.String"/>
 	<field name="tipo" class="java.lang.String"/>
@@ -20,7 +21,7 @@
 		<band height="72" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="72" height="72" uuid="fd479cbd-15dc-4fac-9c44-27f02053a310"/>
-				<imageExpression><![CDATA["/home/27975700819/docs/workspaces/Books/src/main/resources/reports/logo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="72" y="0" width="428" height="20" uuid="d4d8b7b2-3622-44e6-8180-3e352c862348"/>
