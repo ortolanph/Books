@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="books" language="java" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54ed5c8d-e415-4afb-942d-d0832037355a">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="books" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54ed5c8d-e415-4afb-942d-d0832037355a">
 	<property name="ireport.zoom" value="1.4641000000000033"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -9,10 +9,10 @@
 	<parameter name="PARAM_CAIXA" class="java.lang.String"/>
 	<parameter name="PARAM_QR_CODE" class="java.io.InputStream"/>
 	<parameter name="PARAM_DESCRICAO" class="java.lang.String"/>
-	<parameter name="LOGO" class="java.io.InputStream" />
-	<field name="id" class="java.lang.String"/>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<field name="id" class="java.lang.Long"/>
 	<field name="titulo" class="java.lang.String"/>
-	<field name="tipo" class="java.lang.String"/>
+	<field name="tipoObra" class="java.lang.String"/>
 	<field name="code" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -24,14 +24,14 @@
 				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="72" y="0" width="428" height="20" uuid="d4d8b7b2-3622-44e6-8180-3e352c862348"/>
+				<reportElement x="72" y="0" width="500" height="20" uuid="d4d8b7b2-3622-44e6-8180-3e352c862348"/>
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Minha Biblioteca Pessoal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="72" y="20" width="428" height="20" uuid="dc2c87d8-aa96-4baa-939d-4939b8b549aa"/>
+				<reportElement x="72" y="20" width="500" height="20" uuid="dc2c87d8-aa96-4baa-939d-4939b8b549aa"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -63,26 +63,26 @@
 			<rectangle radius="5">
 				<reportElement x="0" y="0" width="572" height="20" backcolor="#000000" uuid="eab9cfd5-b26f-4931-b252-936a87b02831"/>
 			</rectangle>
-			<textField>
+			<staticText>
 				<reportElement x="0" y="0" width="51" height="20" forecolor="#FBFFFF" uuid="63d0adcd-0e32-4e3d-9079-203b2d97591e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[id]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="51" y="0" width="297" height="20" forecolor="#FBFFFF" uuid="bc7d99ce-7236-43cf-a01e-f6ad03c685df"/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="" x="51" y="0" width="296" height="20" forecolor="#FFFFFF" uuid="36d39a04-8ac9-4778-972c-28db0c2bbe41"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[Título]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="348" y="0" width="89" height="20" forecolor="#FBFFFF" uuid="f4658ba2-8911-4690-8930-621303d7e003"/>
+				<text><![CDATA[Título]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="0" width="88" height="20" forecolor="#FFFFFF" uuid="2b62fb72-7e93-41e6-a5d8-97d11a4577c5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[Tipo]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="437" y="0" width="135" height="20" forecolor="#FBFFFF" uuid="c9932cc2-713b-4614-95c7-b03d1f9b7df7"/>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="132" height="20" forecolor="#FFFFFF" uuid="b89e4f02-f301-4f6d-904c-354f67371e06"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[Código de Barras]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Código de Barras]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -105,12 +105,12 @@
 			<textField>
 				<reportElement x="349" y="0" width="88" height="61" uuid="6af6588b-397b-456b-a598-01c4364cae6a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tipoObra}]]></textFieldExpression>
 			</textField>
-            <image>
-                <reportElement x="449" y="7" width="108" height="48" uuid="da352821-5fe9-484a-9d6e-64906a23ef23"/>
-                <imageExpression><![CDATA[$F{code}]]></imageExpression>
-            </image>
+			<image>
+				<reportElement x="449" y="7" width="108" height="48" uuid="da352821-5fe9-484a-9d6e-64906a23ef23"/>
+				<imageExpression><![CDATA[$F{code}]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<columnFooter>

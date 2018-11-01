@@ -10,6 +10,8 @@ public class Obra {
 
     private TipoObra tipo;
 
+    private String tipoObra;
+
     private String barcode;
 
     private InputStream code;
@@ -62,5 +64,13 @@ public class Obra {
         sb.append(", barcode='").append(barcode).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    public String getTipoObra() {
+        return tipoObra;
+    }
+
+    public void setTipoObra(String tipoObra) {
+        this.tipoObra = tipoObra;
     }
 }
