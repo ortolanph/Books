@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="books" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54ed5c8d-e415-4afb-942d-d0832037355a">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="books" language="java" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54ed5c8d-e415-4afb-942d-d0832037355a">
 	<property name="ireport.zoom" value="1.4641000000000033"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -13,7 +13,7 @@
 	<field name="id" class="java.lang.String"/>
 	<field name="titulo" class="java.lang.String"/>
 	<field name="tipo" class="java.lang.String"/>
-	<field name="codebar" class="java.lang.String"/>
+	<field name="code" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -35,7 +35,7 @@
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Listagem de Livros]]></text>
+				<text><![CDATA[Listagem de Obras]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -90,12 +90,6 @@
 			<rectangle radius="5">
 				<reportElement x="0" y="0" width="572" height="61" uuid="8ff2b061-17bb-44f2-9cea-6891d115b416"/>
 			</rectangle>
-			<componentElement>
-				<reportElement x="449" y="7" width="108" height="48" uuid="da352821-5fe9-484a-9d6e-64906a23ef23"/>
-				<jr:EAN13 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
-					<jr:codeExpression><![CDATA[$F{codebar}]]></jr:codeExpression>
-				</jr:EAN13>
-			</componentElement>
 			<textField>
 				<reportElement x="0" y="0" width="51" height="61" uuid="0289c001-c35a-4a19-9928-988370065535"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -113,6 +107,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
+            <image>
+                <reportElement x="449" y="7" width="108" height="48" uuid="da352821-5fe9-484a-9d6e-64906a23ef23"/>
+                <imageExpression><![CDATA[$F{code}]]></imageExpression>
+            </image>
 		</band>
 	</detail>
 	<columnFooter>

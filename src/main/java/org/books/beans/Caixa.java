@@ -1,5 +1,7 @@
 package org.books.beans;
 
+import java.io.InputStream;
+
 public class Caixa {
 
     private Long id;
@@ -7,6 +9,8 @@ public class Caixa {
     private String titulo;
 
     private String descricao;
+
+    private InputStream qrcode;
 
     public Long getId() {
         return id;
@@ -30,6 +34,14 @@ public class Caixa {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public InputStream getQrcode() {
+        return qrcode;
+    }
+
+    public void setQrcode(InputStream qrcode) {
+        this.qrcode = qrcode;
     }
 
     @Override public String toString() {

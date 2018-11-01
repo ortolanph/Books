@@ -4,6 +4,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.oned.EAN13Writer;
 import com.google.zxing.qrcode.QRCodeWriter;
 import org.springframework.stereotype.Component;
 
@@ -15,13 +16,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Component
-public class CodeBarService {
+public class BarcodeImageService {
 
-    private InputStream getQRCode(String text) {
+    public InputStream generateQRCode(String text, int width, int height) {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = null;
         try {
-            bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, QR_CODE_DIMENSION, QR_CODE_DIMENSION);
+            bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
         } catch (WriterException e) {
             e.printStackTrace();
         }
@@ -37,5 +38,24 @@ public class CodeBarService {
         return new ByteArrayInputStream(baos.toByteArray());
     }
 
-    private static final int QR_CODE_DIMENSION = 72;
+    public InputStream generateEAN13Barcode(String text, int width, int height) {
+        EAN13Writer ean13Writer = new EAN13Writer();
+        BitMatrix bitMatrix = null;
+        try {
+            bitMatrix = ean13Writer.encode(text, BarcodeFormat.EAN_13, width, height);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+        BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(image, "png", baos);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ByteArrayInputStream(baos.toByteArray());
+    }
+
 }

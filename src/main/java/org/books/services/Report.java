@@ -3,17 +3,17 @@ package org.books.services;
 public enum Report {
 
     BOOKS("books.jrxml"),
-    BOXES("boxes.jrml");
+    BOXES("boxes.jrxml");
 
     private final String file;
 
-    private static final String REPORT_DIR = "";
+    private static final String CLASSPATH = "classpath:reports/";
 
     Report(String file) {
         this.file = file;
     }
 
-    public String getFile() {
-        return file;
+    public String getResourceName() {
+        return String.format("%s%s", CLASSPATH, file);
     }
 }
