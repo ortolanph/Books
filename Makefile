@@ -19,12 +19,13 @@ compile: clean dependencies
 
 run: compile
 	@echo "--[EXECUTANDO]--------------------------------------------------------"
-	@java -Dserver.port=$(PORT) -jar target/$(JAR_FILE)
+	@java -Dspring.profiles.active=dev -Dserver.port=$(PORT) -jar target/$(JAR_FILE)
 	@echo "----------------------------------------------------------------------"
 
 debug: compile
 	@echo "--[EXECUTANDO COM DEBUG]----------------------------------------------"
-	@java -Dserver.port=$(PORT) \
+	@java -Dspring.profiles.active=dev \
+	      -Dserver.port=$(PORT) \
 	      -jar \
 	      -Xdebug \
 	      -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8888 \

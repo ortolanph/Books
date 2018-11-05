@@ -6,6 +6,7 @@
 	<property name="net.sf.jasperreports.default.pdf.embedded" value="true"/>
 	<property name="net.sf.jasperreports.default.font.name" value="Arial"/>
 	<property name="net.sf.jasperreports.default.pdf.font.name" value="Arial"/>
+	<field name="id" class="java.lang.Long"/>
 	<field name="titulo" class="java.lang.String"/>
 	<field name="descricao" class="java.lang.String"/>
 	<field name="qrcode" class="java.io.InputStream"/>
@@ -34,7 +35,7 @@
 				<textElement textAlignment="Center">
 					<font size="13"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{id} + " - " + $F{titulo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="297" width="555" height="65" uuid="83b1d821-d764-4c7a-b01f-24f7facba088"/>

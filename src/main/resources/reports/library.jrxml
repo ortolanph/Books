@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.5.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="books" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54ed5c8d-e415-4afb-942d-d0832037355a">
 	<property name="ireport.zoom" value="1.4641000000000033"/>
 	<property name="ireport.x" value="0"/>
@@ -6,14 +7,11 @@
 	<property name="net.sf.jasperreports.default.pdf.embedded" value="true"/>
 	<property name="net.sf.jasperreports.default.font.name" value="Arial"/>
 	<property name="net.sf.jasperreports.default.pdf.font.name" value="Arial"/>
-	<parameter name="PARAM_CAIXA" class="java.lang.String"/>
-	<parameter name="PARAM_QR_CODE" class="java.io.InputStream"/>
-	<parameter name="PARAM_DESCRICAO" class="java.lang.String"/>
 	<parameter name="LOGO" class="java.io.InputStream"/>
 	<field name="id" class="java.lang.Long"/>
 	<field name="titulo" class="java.lang.String"/>
 	<field name="tipoObra" class="java.lang.String"/>
-	<field name="code" class="java.io.InputStream"/>
+	<field name="caixa" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -40,48 +38,38 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="72" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="25" width="500" height="47" uuid="677a64de-e007-40ae-8a62-42b9898fa63a"/>
-				<textFieldExpression><![CDATA[$P{PARAM_DESCRICAO}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="0" width="500" height="20" uuid="cdd60034-865e-450f-8bbf-e6e3d7a48a91"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{PARAM_CAIXA}]]></textFieldExpression>
-			</textField>
-			<image>
-				<reportElement x="500" y="0" width="72" height="72" uuid="1df7dd05-9088-4e58-8399-986eca6edddc"/>
-				<imageExpression><![CDATA[$P{PARAM_QR_CODE}]]></imageExpression>
-			</image>
-		</band>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="20" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<rectangle radius="5">
 				<reportElement x="0" y="0" width="572" height="20" backcolor="#000000" uuid="eab9cfd5-b26f-4931-b252-936a87b02831"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="0" y="0" width="51" height="20" forecolor="#FBFFFF" uuid="63d0adcd-0e32-4e3d-9079-203b2d97591e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[id]]></text>
+				<text><![CDATA[#]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="" x="51" y="0" width="296" height="20" forecolor="#FFFFFF" uuid="36d39a04-8ac9-4778-972c-28db0c2bbe41"/>
+				<reportElement key="" x="51" y="0" width="269" height="20" forecolor="#FFFFFF" uuid="36d39a04-8ac9-4778-972c-28db0c2bbe41"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Título]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="349" y="0" width="88" height="20" forecolor="#FFFFFF" uuid="2b62fb72-7e93-41e6-a5d8-97d11a4577c5"/>
+				<reportElement x="320" y="0" width="88" height="20" forecolor="#FFFFFF" uuid="2b62fb72-7e93-41e6-a5d8-97d11a4577c5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="440" y="0" width="132" height="20" forecolor="#FFFFFF" uuid="b89e4f02-f301-4f6d-904c-354f67371e06"/>
+				<reportElement x="418" y="0" width="100" height="20" uuid="7e4f7b1a-99cf-44ed-a7c5-47e2dc3ff6c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d57c120-677c-43ff-bc2d-5890fbaec68c"/>
+				</reportElement>
+				<text><![CDATA[caixa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="1" width="162" height="20" forecolor="#FFFFFF" uuid="2a1ca591-bd62-44d9-8315-5c2c1742e5ee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Código de Barras]]></text>
+				<text><![CDATA[Caixa]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -95,22 +83,25 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="51" y="0" width="297" height="61" uuid="1967e35e-b93c-4c79-beb9-f8acf1adead0"/>
+				<reportElement x="51" y="0" width="269" height="61" uuid="1967e35e-b93c-4c79-beb9-f8acf1adead0"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="349" y="0" width="88" height="61" uuid="6af6588b-397b-456b-a598-01c4364cae6a"/>
+				<reportElement x="320" y="0" width="88" height="61" uuid="6af6588b-397b-456b-a598-01c4364cae6a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{tipoObra}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="449" y="7" width="108" height="48" uuid="da352821-5fe9-484a-9d6e-64906a23ef23"/>
-				<imageExpression><![CDATA[$F{code}]]></imageExpression>
-			</image>
+			<textField>
+				<reportElement x="408" y="0" width="164" height="61" uuid="8bd356ca-914e-49fd-aa2c-fad26e0bbec1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d57c120-677c-43ff-bc2d-5890fbaec68c"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{caixa}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

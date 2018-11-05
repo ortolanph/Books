@@ -34,8 +34,8 @@ public class CaixaController {
         return caixa;
     }
 
-    @GetMapping(value = "/api/boxes/report", produces = "application/pdf")
-    public @ResponseBody ResponseEntity<byte[]> relatorioCaixas() {
+    @GetMapping(value = "/api/boxes/report/{boxid}", produces = "application/pdf")
+    public @ResponseBody ResponseEntity<byte[]> relatorioCaixas(@PathVariable("boxid") int boxid) {
         Caixa caixa1 = new Caixa();
 
         caixa1.setId(1L);

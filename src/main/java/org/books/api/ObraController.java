@@ -103,7 +103,7 @@ public class ObraController {
         properties.put("PARAM_QR_CODE", barcodeImageService.generateQRCode("Caixa M - Caixa Template", 72, 72));
 
         byte[] bytes = reportService.generatePDFReport(
-            Report.BOOKS,
+            Report.WORKS,
             properties,
             new JRBeanCollectionDataSource(obras));
 

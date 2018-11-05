@@ -2,8 +2,9 @@ package org.books.services;
 
 public enum Report {
 
-    BOOKS("books.jrxml"),
-    BOXES("boxes.jrxml");
+    WORKS("works.jrxml"),
+    BOXES("boxes.jrxml"),
+    LIBRARY("library.jrxml");
 
     private final String file;
 
