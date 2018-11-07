@@ -28,7 +28,7 @@ function report() {
 function createStructure() {
     CONTAINER_NAME=$1
 
-    sudo docker cp ./$DEFAULT_DDL \
+    sudo docker cp $DEFAULT_DDL \
                 $CONTAINER_NAME:/docker-entrypoint-initdb.d/$DEFAULT_DDL
     sudo docker exec $CONTAINER_NAME \
                 psql -t -d $PG_DB -U $PG_USER -h $IP_ADDRESS -f "docker-entrypoint-initdb.d/$DEFAULT_DDL"
