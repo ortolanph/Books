@@ -10,6 +10,7 @@ import org.books.services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,8 +31,8 @@ public class ObraController {
     @Autowired
     private StorageService storageService;
 
-    @GetMapping(value = "/api/works/report", produces = "application/pdf")
-    public @ResponseBody ResponseEntity<byte[]> relatorioLivros() {
+    @GetMapping(value = "/api/works/report/{boxid}", produces = "application/pdf")
+    public @ResponseBody ResponseEntity<byte[]> relatorioLivros(@PathVariable("boxid") int boxid) {
 
         List<Obra> obras = new ArrayList<>();
 
