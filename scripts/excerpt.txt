@@ -1,0 +1,8 @@
+  HAS_DOCKER=`which docker > /dev/null && echo "true" || echo "false"`
+  @if [ "${HAS_DOCKER}" = "false" ]; then \
+  echo "Docker nao encontrado. Iniciando a instalacao em 10 segundos. Caso nao seja sudo, cancele esta operacao."; \
+  sleep 10; \
+  wget -qO- "https://get.docker.com/" | sh; \
+  sudo usermod -aG docker ${USER}; \
+  echo "Docker instalado. Para o correto funcionamento, reinicie sua sessao (logout) para pegar o novo grupo."; \
+  exit 1; \
