@@ -1,0 +1,2 @@
+docker pull thajeztah/pgadmin4
+docker run --rm -p 5050:5050 thajeztah/pgadmin4

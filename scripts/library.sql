@@ -16,6 +16,13 @@ create table obra (
     id serial primary key,
     owner_id int not null references owner(id),
     titulo varchar(255) not null,
-    tipo byte not null,
+    tipo char(1) not null,
     barcode varchar(13)
 );
+
+
+select * from owner;
+
+select * from caixa;
+
+select * from obra;

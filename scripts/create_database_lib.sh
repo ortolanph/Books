@@ -12,12 +12,12 @@ CONFIG_FILE=""
 CONFIG_NAME=""
 
 function ipAddress() {
-    IP_ADDRESS=$( sudo docker inspect $CONTAINER_NAME | jq -r $JQ_IP_ADDRESS )
+    IP_ADDRESS=$( docker inspect $CONTAINER_NAME | jq -r $JQ_IP_ADDRESS )
 }
 
 function report() {
   echo "===== [ $CONTAINER_NAME ] ====="
-  echo "IP Address : $IP_ADDRESS"
+  echo "IP Address : localhost"
   echo "Port       : 5432"
   echo "Database   : $PG_DB"
   echo "User       : $PG_USER"
@@ -27,11 +27,14 @@ function report() {
 
 function createStructure() {
     CONTAINER_NAME=$1
-
-    sudo docker cp $DEFAULT_DDL \
-                $CONTAINER_NAME:/docker-entrypoint-initdb.d/$DEFAULT_DDL
-    sudo docker exec $CONTAINER_NAME \
-                psql -t -d $PG_DB -U $PG_USER -h $IP_ADDRESS -f "docker-entrypoint-initdb.d/$DEFAULT_DDL"
+    
+    docker cp ./$DEFAULT_DDL \
+           $CONTAINER_NAME:/tmp/$DEFAULT_DDL
+           
+    docker exec -it $CONTAINER_NAME \
+           psql -v ON_ERROR_STOP=1 -d $PG_DB -U $PG_USER -a -f /tmp/$DEFAULT_DDL -o /tmp/script.log
+                
+    docker cp $CONTAINER_NAME:/tmp/script.log ./script.log       
 }
 
 function createPGSQLDockerImage() {
@@ -41,13 +44,19 @@ function createPGSQLDockerImage() {
     PG_PASSWORD=$4
     CONFIG_NAME=$5
 
-    sudo docker run --name $CONTAINER_NAME \
-                    -e POSTGRES_DB=$PG_DB \
-                    -e POSTGRES_USER=$PG_USER \
-                    -e POSTGRES_PASSWORD=$PG_PASSWORD \
-                    -d postgres
+    docker run --restart=always \
+               --detach=true \
+			   --name $CONTAINER_NAME \
+               -e POSTGRES_DB=$PG_DB \
+               -e POSTGRES_USER=$PG_USER \
+               -e POSTGRES_PASSWORD=$PG_PASSWORD \
+               -p 5432:5432 \
+               -i postgres:latest
 
+	sleep 10
+	
+	docker start $CONTAINER_NAME
+	
     createStructure $CONTAINER_NAME
-    ipAddress
     report
 }
