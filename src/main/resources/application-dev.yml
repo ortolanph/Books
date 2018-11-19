@@ -12,4 +12,5 @@ spring:
     driverClassName: org.postgresql.Driver
   main:
     banner-mode: "off"
-  secret.key: BC8fRW1a50aA50dQ7pxvLLonewOO4ODKnzIhdtNgl7gDjSxEIUuQNwAzafIJU0ew
+
+secret.key: BC8fRW1a50aA50dQ7pxvLLonewOO4ODKnzIhdtNgl7gDjSxEIUuQNwAzafIJU0ew
