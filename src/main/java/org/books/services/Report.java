@@ -6,9 +6,9 @@ public enum Report {
     BOXES("boxes.jrxml"),
     LIBRARY("library.jrxml");
 
-    private final String file;
-
     private static final String CLASSPATH = "classpath:reports/";
+
+    private final String file;
 
     Report(String file) {
         this.file = file;

@@ -1,130 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.5.1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="books" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54ed5c8d-e415-4afb-942d-d0832037355a">
-	<property name="ireport.zoom" value="1.4641000000000033"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<property name="net.sf.jasperreports.default.pdf.embedded" value="true"/>
-	<property name="net.sf.jasperreports.default.font.name" value="Arial"/>
-	<property name="net.sf.jasperreports.default.pdf.font.name" value="Arial"/>
-	<parameter name="LOGO" class="java.io.InputStream"/>
-	<field name="id" class="java.lang.Long"/>
-	<field name="titulo" class="java.lang.String"/>
-	<field name="tipoObra" class="java.lang.String"/>
-	<field name="caixa" class="java.lang.String"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band height="72" splitType="Stretch">
-			<image>
-				<reportElement x="0" y="0" width="72" height="72" uuid="fd479cbd-15dc-4fac-9c44-27f02053a310"/>
-				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
-			</image>
-			<staticText>
-				<reportElement x="72" y="0" width="500" height="20" uuid="d4d8b7b2-3622-44e6-8180-3e352c862348"/>
-				<textElement>
-					<font size="16" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Minha Biblioteca Pessoal]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="72" y="20" width="500" height="20" uuid="dc2c87d8-aa96-4baa-939d-4939b8b549aa"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Listagem de Obras]]></text>
-			</staticText>
-		</band>
-	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="21" splitType="Stretch">
-			<rectangle radius="5">
-				<reportElement x="0" y="0" width="572" height="20" backcolor="#000000" uuid="eab9cfd5-b26f-4931-b252-936a87b02831"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="0" y="0" width="51" height="20" forecolor="#FBFFFF" uuid="63d0adcd-0e32-4e3d-9079-203b2d97591e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[#]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="" x="51" y="0" width="269" height="20" forecolor="#FFFFFF" uuid="36d39a04-8ac9-4778-972c-28db0c2bbe41"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Título]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="320" y="0" width="88" height="20" forecolor="#FFFFFF" uuid="2b62fb72-7e93-41e6-a5d8-97d11a4577c5"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Tipo]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="418" y="0" width="100" height="20" uuid="7e4f7b1a-99cf-44ed-a7c5-47e2dc3ff6c0">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d57c120-677c-43ff-bc2d-5890fbaec68c"/>
-				</reportElement>
-				<text><![CDATA[caixa]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="410" y="1" width="162" height="20" forecolor="#FFFFFF" uuid="2a1ca591-bd62-44d9-8315-5c2c1742e5ee"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Caixa]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="62" splitType="Stretch">
-			<rectangle radius="5">
-				<reportElement x="0" y="0" width="572" height="61" uuid="8ff2b061-17bb-44f2-9cea-6891d115b416"/>
-			</rectangle>
-			<textField>
-				<reportElement x="0" y="0" width="51" height="61" uuid="0289c001-c35a-4a19-9928-988370065535"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false" isStrikeThrough="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="51" y="0" width="269" height="61" uuid="1967e35e-b93c-4c79-beb9-f8acf1adead0"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="320" y="0" width="88" height="61" uuid="6af6588b-397b-456b-a598-01c4364cae6a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{tipoObra}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="408" y="0" width="164" height="61" uuid="8bd356ca-914e-49fd-aa2c-fad26e0bbec1">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d57c120-677c-43ff-bc2d-5890fbaec68c"/>
-				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{caixa}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
-	<columnFooter>
-		<band splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch">
-			<textField>
-				<reportElement x="437" y="16" width="80" height="20" uuid="847f2003-bbb1-4a35-b205-07ba0d52550f"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="517" y="16" width="40" height="20" uuid="0db3abd0-38f3-4eee-9da6-4489ecbc86f3"/>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="11" y="16" width="100" height="20" uuid="9e1854eb-fc6f-46b0-ba2b-4a4117118750"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
-	</summary>
+<jasperReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="books" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20" uuid="54ed5c8d-e415-4afb-942d-d0832037355a">
+    <property name="ireport.zoom" value="1.4641000000000033"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <property name="net.sf.jasperreports.default.pdf.embedded" value="true"/>
+    <property name="net.sf.jasperreports.default.font.name" value="Arial"/>
+    <property name="net.sf.jasperreports.default.pdf.font.name" value="Arial"/>
+    <parameter name="LOGO" class="java.io.InputStream"/>
+    <field name="id" class="java.lang.Long"/>
+    <field name="titulo" class="java.lang.String"/>
+    <field name="tipoObra" class="java.lang.String"/>
+    <field name="caixa" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="72" splitType="Stretch">
+            <image>
+                <reportElement x="0" y="0" width="72" height="72" uuid="fd479cbd-15dc-4fac-9c44-27f02053a310"/>
+                <imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement x="72" y="0" width="500" height="20" uuid="d4d8b7b2-3622-44e6-8180-3e352c862348"/>
+                <textElement>
+                    <font size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Minha Biblioteca Pessoal]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="72" y="20" width="500" height="20" uuid="dc2c87d8-aa96-4baa-939d-4939b8b549aa"/>
+                <textElement>
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Listagem de Obras]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="21" splitType="Stretch">
+            <rectangle radius="5">
+                <reportElement x="0" y="0" width="572" height="20" backcolor="#000000"
+                               uuid="eab9cfd5-b26f-4931-b252-936a87b02831"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="0" y="0" width="51" height="20" forecolor="#FBFFFF"
+                               uuid="63d0adcd-0e32-4e3d-9079-203b2d97591e"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[#]]></text>
+            </staticText>
+            <staticText>
+                <reportElement key="" x="51" y="0" width="269" height="20" forecolor="#FFFFFF"
+                               uuid="36d39a04-8ac9-4778-972c-28db0c2bbe41"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Título]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="320" y="0" width="88" height="20" forecolor="#FFFFFF"
+                               uuid="2b62fb72-7e93-41e6-a5d8-97d11a4577c5"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Tipo]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="418" y="0" width="100" height="20" uuid="7e4f7b1a-99cf-44ed-a7c5-47e2dc3ff6c0">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID"
+                              value="4d57c120-677c-43ff-bc2d-5890fbaec68c"/>
+                </reportElement>
+                <text><![CDATA[caixa]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="410" y="1" width="162" height="20" forecolor="#FFFFFF"
+                               uuid="2a1ca591-bd62-44d9-8315-5c2c1742e5ee"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Caixa]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="62" splitType="Stretch">
+            <rectangle radius="5">
+                <reportElement x="0" y="0" width="572" height="61" uuid="8ff2b061-17bb-44f2-9cea-6891d115b416"/>
+            </rectangle>
+            <textField>
+                <reportElement x="0" y="0" width="51" height="61" uuid="0289c001-c35a-4a19-9928-988370065535"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="false" isStrikeThrough="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="51" y="0" width="269" height="61" uuid="1967e35e-b93c-4c79-beb9-f8acf1adead0"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="320" y="0" width="88" height="61" uuid="6af6588b-397b-456b-a598-01c4364cae6a"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{tipoObra}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="408" y="0" width="164" height="61" uuid="8bd356ca-914e-49fd-aa2c-fad26e0bbec1">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID"
+                              value="4d57c120-677c-43ff-bc2d-5890fbaec68c"/>
+                </reportElement>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{caixa}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch">
+            <textField>
+                <reportElement x="437" y="16" width="80" height="20" uuid="847f2003-bbb1-4a35-b205-07ba0d52550f"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="517" y="16" width="40" height="20" uuid="0db3abd0-38f3-4eee-9da6-4489ecbc86f3"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="dd/MM/yyyy">
+                <reportElement x="11" y="16" width="100" height="20" uuid="9e1854eb-fc6f-46b0-ba2b-4a4117118750"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band splitType="Stretch"/>
+    </summary>
 </jasperReport>

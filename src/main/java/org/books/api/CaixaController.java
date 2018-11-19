@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 @RestController
 public class CaixaController {
 
+    private static final Logger LOGGER = Logger.getLogger(CaixaController.class.getName());
+
     @Autowired
     private JasperReportService reportService;
 
@@ -82,6 +84,4 @@ public class CaixaController {
             .header("Content-Disposition", "inline; filename=\"caixas.pdf\"")
             .body(bytes);
     }
-
-    private static final Logger LOGGER = Logger.getLogger(CaixaController.class.getName());
 }

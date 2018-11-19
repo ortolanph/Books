@@ -2,12 +2,12 @@ package org.books.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-@Component
+@Service
 public class StorageService {
 
     @Autowired

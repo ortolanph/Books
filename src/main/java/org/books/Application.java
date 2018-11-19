@@ -10,10 +10,11 @@ import java.util.logging.Logger;
 @SpringBootApplication
 @EnableAutoConfiguration
 public class Application {
+
+    private static final Logger LOGGER = Logger.getLogger(Application.class.getName());
+
     public static void main(String[] args) {
         LOGGER.fine("Running App");
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
     }
-
-    private static final Logger LOGGER = Logger.getLogger(Application.class.getName());
 }

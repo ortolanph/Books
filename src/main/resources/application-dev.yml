@@ -10,3 +10,6 @@ spring:
     username: comicbookguy
     password: dev12345
     driverClassName: org.postgresql.Driver
+  main:
+    banner-mode: "off"
+  secret.key: BC8fRW1a50aA50dQ7pxvLLonewOO4ODKnzIhdtNgl7gDjSxEIUuQNwAzafIJU0ew

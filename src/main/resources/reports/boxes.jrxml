@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boxes" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="721bc0db-f74a-4e2f-82ad-fa0eb6de0f0f">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<property name="net.sf.jasperreports.default.pdf.embedded" value="true"/>
-	<property name="net.sf.jasperreports.default.font.name" value="Arial"/>
-	<property name="net.sf.jasperreports.default.pdf.font.name" value="Arial"/>
-	<field name="id" class="java.lang.Long"/>
-	<field name="titulo" class="java.lang.String"/>
-	<field name="descricao" class="java.lang.String"/>
-	<field name="qrcode" class="java.io.InputStream"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band splitType="Stretch"/>
-	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="368" splitType="Stretch">
-			<rectangle radius="10">
-				<reportElement x="0" y="0" width="555" height="368" uuid="fb6e7339-3e5c-4991-8b5d-8933c31ae2ea"/>
-				<graphicElement>
-					<pen lineWidth="2.0"/>
-				</graphicElement>
-			</rectangle>
-			<textField>
-				<reportElement x="0" y="7" width="555" height="20" uuid="9d6d676d-cc3f-4f18-aa3b-b72b8367b2b6"/>
-				<textElement textAlignment="Center">
-					<font size="13"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{id} + " - " + $F{titulo}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="297" width="555" height="65" uuid="83b1d821-d764-4c7a-b01f-24f7facba088"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="15" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
-			</textField>
-			<image>
-				<reportElement x="148" y="36" width="250" height="250" uuid="925303f2-ab5f-4ce3-9d14-4600be1c9e05"/>
-				<imageExpression><![CDATA[$F{qrcode}]]></imageExpression>
-			</image>
-		</band>
-	</detail>
-	<columnFooter>
-		<band splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
-	</summary>
+<jasperReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="boxes" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20"
+              rightMargin="20" topMargin="20" bottomMargin="20" uuid="721bc0db-f74a-4e2f-82ad-fa0eb6de0f0f">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <property name="net.sf.jasperreports.default.pdf.embedded" value="true"/>
+    <property name="net.sf.jasperreports.default.font.name" value="Arial"/>
+    <property name="net.sf.jasperreports.default.pdf.font.name" value="Arial"/>
+    <field name="id" class="java.lang.Long"/>
+    <field name="titulo" class="java.lang.String"/>
+    <field name="descricao" class="java.lang.String"/>
+    <field name="qrcode" class="java.io.InputStream"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band splitType="Stretch"/>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band splitType="Stretch"/>
+    </columnHeader>
+    <detail>
+        <band height="368" splitType="Stretch">
+            <rectangle radius="10">
+                <reportElement x="0" y="0" width="555" height="368" uuid="fb6e7339-3e5c-4991-8b5d-8933c31ae2ea"/>
+                <graphicElement>
+                    <pen lineWidth="2.0"/>
+                </graphicElement>
+            </rectangle>
+            <textField>
+                <reportElement x="0" y="7" width="555" height="20" uuid="9d6d676d-cc3f-4f18-aa3b-b72b8367b2b6"/>
+                <textElement textAlignment="Center">
+                    <font size="13"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{id} + " - " + $F{titulo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="297" width="555" height="65" uuid="83b1d821-d764-4c7a-b01f-24f7facba088"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="15" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+            </textField>
+            <image>
+                <reportElement x="148" y="36" width="250" height="250" uuid="925303f2-ab5f-4ce3-9d14-4600be1c9e05"/>
+                <imageExpression><![CDATA[$F{qrcode}]]></imageExpression>
+            </image>
+        </band>
+    </detail>
+    <columnFooter>
+        <band splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band splitType="Stretch"/>
+    </summary>
 </jasperReport>

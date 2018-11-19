@@ -67,7 +67,7 @@ public class ObraController {
         obras.add(obra3);
 
         Obra obra4 = new Obra();
-        
+
         obra4.setId(4L);
         obra4.setTitulo("Star Wars - O último vôo da Hanbinger");
         obra4.setTipo(TipoObra.COMIC);
@@ -95,12 +95,13 @@ public class ObraController {
         obra6.setBarcode("9788583682981");
         obra6.setCode(barcodeImageService.generateEAN13Barcode(obra6.getBarcode(), 108, 48));
         obras.add(obra6);
-        
+
         Map<String, Object> properties = new HashMap<>();
 
         properties.put("LOGO", storageService.loadLogo());
         properties.put("PARAM_CAIXA", "Caixa M - Caixa Template");
-        properties.put("PARAM_DESCRICAO", "Esta é uma caixa template somente para teste de relatório. Nela se encontram qualquer e todo o tipo de Obra.");
+        properties.put("PARAM_DESCRICAO",
+            "Esta é uma caixa template somente para teste de relatório. Nela se encontram qualquer e todo o tipo de Obra.");
         properties.put("PARAM_QR_CODE", barcodeImageService.generateQRCode("Caixa M - Caixa Template", 72, 72));
 
         byte[] bytes = reportService.generatePDFReport(

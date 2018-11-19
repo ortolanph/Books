@@ -2,14 +2,14 @@ package org.books.services;
 
 import net.sf.jasperreports.engine.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
-@Component
+@Service
 public class JasperReportService {
 
     @Autowired
@@ -28,8 +28,7 @@ public class JasperReportService {
             jasperReport = JasperCompileManager.compileReport(jrxml);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
             bytes = JasperExportManager.exportReportToPdf(jasperPrint);
-        }
-        catch (JRException | IOException e) {
+        } catch (JRException | IOException e) {
             e.printStackTrace();
         }
 

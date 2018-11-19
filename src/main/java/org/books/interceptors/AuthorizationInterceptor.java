@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationInterceptor.class.getName());
+
     @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
         throws Exception {
 
@@ -15,6 +17,4 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         return true;
     }
-
-    private static final Logger LOGGER = Logger.getLogger(AuthorizationInterceptor.class.getName());
 }
