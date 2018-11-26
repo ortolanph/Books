@@ -22,8 +22,11 @@ public class OwnerService {
     }
 
     public LoggedOwner criarOwner(Owner owner) {
-        securityService.gerarToken(owner);
+        LoggedOwner loggedOwner = new LoggedOwner();
 
-        return null;
+        loggedOwner.setName(owner.getName());
+        loggedOwner.setToken(securityService.gerarToken(owner));
+
+        return loggedOwner;
     }
 }

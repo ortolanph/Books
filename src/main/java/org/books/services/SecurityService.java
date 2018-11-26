@@ -26,8 +26,6 @@ public class SecurityService {
     private static final Logger LOGGER = Logger.getLogger(SecurityService.class.getName());
 
     public String gerarToken(Owner owner) {
-        LOGGER.info(String.format("secret.key=%s", environment.getProperty(KEY_PROPERTY)));
-
         byte[] apykeybytes = environment.getProperty(KEY_PROPERTY).getBytes();
         Key signingKey = new SecretKeySpec(apykeybytes, SignatureAlgorithm.HS256.getJcaName());
 
