@@ -19,6 +19,10 @@ class AuthorizationInterceptor : HandlerInterceptorAdapter() {
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
         val authorization = request!!.getHeader(AUTHORIZATION_HEADER)
 
+        val infoToken = securityService!!.recuperarInformacoesToken(authorization)
+
+        val owner = ownerRepository!!.findById(infoToken["id"].toString().toInt())
+
 
 
         LOGGER.info("Gotcha!")

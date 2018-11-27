@@ -1,9 +1,7 @@
 package org.books.services
 
 import com.google.common.io.BaseEncoding
-import io.jsonwebtoken.Claims
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.*
 import org.books.entities.Owner
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.env.Environment
@@ -30,24 +28,19 @@ class SecurityService {
                 .setIssuer("My Library App")
                 .setSubject("Save your library, find your stuff!")
                 .setIssuedAt(Date())
+                .claim("id", owner.id)
                 .claim("name", owner.name)
                 .claim("password", owner.password)
                 .signWith(SignatureAlgorithm.HS256, signingKey)
                 .compact()
     }
 
-    fun verificar(name: String, password: String, token: String): Boolean {
-        val body = Jwts
-                .parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(environment!!.getProperty(KEY_PROPERTY)))
-                .parseClaimsJws(token)
-                .body
-
-        val nameToken = body["name"].toString()
-        val passwordToken = body["password"].toString()
-
-        return checkValues(name, nameToken) && checkValues(password, passwordToken)
-    }
+    fun recuperarInformacoesToken(token: String) : Claims =
+            Jwts
+                    .parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(environment!!.getProperty(KEY_PROPERTY)))
+                    .parseClaimsJws(token)
+                    .body
 
     private fun decode(encodedString: String): String {
         val decoded = BaseEncoding.base64().decode(encodedString)

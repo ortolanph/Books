@@ -29,6 +29,7 @@ class OwnerService {
 
         repository!!.save(owner)
 
+        loggedOwner.id = owner.id
         loggedOwner.name = owner.name
         loggedOwner.token = securityService!!.gerarToken(owner)
 
