@@ -1,6 +1,6 @@
-package org.books.beans;
+package org.books.beans
 
-public enum TipoObra {
+enum class TipoObra {
 
     LIVRO,
     COMIC,
