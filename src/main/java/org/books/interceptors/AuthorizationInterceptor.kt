@@ -3,11 +3,13 @@ package org.books.interceptors
 import org.books.persistence.OwnerRepository
 import org.books.services.SecurityService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter
 import java.util.logging.Logger
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+@Component
 class AuthorizationInterceptor : HandlerInterceptorAdapter() {
 
     @Autowired
@@ -17,12 +19,15 @@ class AuthorizationInterceptor : HandlerInterceptorAdapter() {
     private val ownerRepository : OwnerRepository? = null
 
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
-        val authorization = request!!.getHeader(AUTHORIZATION_HEADER)
+        val url = request.requestURL.toString()
 
-        val infoToken = securityService!!.recuperarInformacoesToken(authorization)
+        if(!url.contains("public")) {
+            val authorization = request!!.getHeader(AUTHORIZATION_HEADER)
 
-        val owner = ownerRepository!!.findById(infoToken["id"].toString().toInt())
+            val infoToken = securityService!!.recuperarInformacoesToken(authorization)
 
+            val owner = ownerRepository!!.findById(infoToken["id"].toString().toInt())
+        }
 
 
         LOGGER.info("Gotcha!")

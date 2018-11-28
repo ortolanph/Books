@@ -20,7 +20,8 @@ class SecurityService {
     private val environment: Environment? = null
 
     fun gerarToken(owner: Owner): String {
-        val apikeybytes = environment!!.getProperty(KEY_PROPERTY)?.toByteArray()
+        val apikeybytes = DatatypeConverter.parseBase64Binary(environment!!.getProperty(KEY_PROPERTY))
+
         val signingKey = SecretKeySpec(apikeybytes, SignatureAlgorithm.HS256.jcaName)
 
         return Jwts
@@ -35,12 +36,18 @@ class SecurityService {
                 .compact()
     }
 
-    fun recuperarInformacoesToken(token: String) : Claims =
-            Jwts
-                    .parser()
-                    .setSigningKey(DatatypeConverter.parseBase64Binary(environment!!.getProperty(KEY_PROPERTY)))
-                    .parseClaimsJws(token)
-                    .body
+    fun recuperarInformacoesToken(token: String) : Claims  {
+        val apikeybytes = DatatypeConverter.parseBase64Binary(environment!!.getProperty(KEY_PROPERTY))
+
+        val signingKey = SecretKeySpec(apikeybytes, SignatureAlgorithm.HS256.jcaName)
+
+        return Jwts
+                .parser()
+                .setSigningKey(signingKey)
+                .parseClaimsJws(token)
+                .body
+    }
+
 
     private fun decode(encodedString: String): String {
         val decoded = BaseEncoding.base64().decode(encodedString)
