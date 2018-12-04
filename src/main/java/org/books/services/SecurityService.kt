@@ -34,19 +34,21 @@ class SecurityService {
     fun recuperarInformacoesToken(token: String) : Claims =
         Jwts
             .parser()
-            .setSigningKey(secretKey())
+            .setSigningKey(apiKeyBytes())
             .parseClaimsJws(token)
             .body
 
 
     private fun secretKey() : SecretKeySpec =
         SecretKeySpec(
-            DatatypeConverter
-                .parseBase64Binary(
-                        environment!!.getProperty(KEY_PROPERTY)
-                ),
+            apiKeyBytes(),
             SignatureAlgorithm.HS256.jcaName)
 
+    private fun apiKeyBytes() : ByteArray =
+        DatatypeConverter
+            .parseBase64Binary(
+                environment!!.getProperty(KEY_PROPERTY)
+            )
 
     private fun decode(encodedString: String): String =
         String(BaseEncoding.base64().decode(encodedString))
