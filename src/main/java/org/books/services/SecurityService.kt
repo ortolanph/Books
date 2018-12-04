@@ -19,50 +19,43 @@ class SecurityService {
     @Autowired
     private val environment: Environment? = null
 
-    fun gerarToken(owner: Owner): String {
-        val apikeybytes = DatatypeConverter.parseBase64Binary(environment!!.getProperty(KEY_PROPERTY))
+    fun gerarToken(owner: Owner): String  =
+        Jwts
+            .builder()
+            .setIssuer("My Library App")
+            .setSubject("Save your library, find your stuff!")
+            .setIssuedAt(Date())
+            .claim("id", owner.id)
+            .claim("name", owner.name)
+            .claim("password", owner.password)
+            .signWith(SignatureAlgorithm.HS256, secretKey())
+            .compact()
 
-        val signingKey = SecretKeySpec(apikeybytes, SignatureAlgorithm.HS256.jcaName)
-
-        return Jwts
-                .builder()
-                .setIssuer("My Library App")
-                .setSubject("Save your library, find your stuff!")
-                .setIssuedAt(Date())
-                .claim("id", owner.id)
-                .claim("name", owner.name)
-                .claim("password", owner.password)
-                .signWith(SignatureAlgorithm.HS256, signingKey)
-                .compact()
-    }
-
-    fun recuperarInformacoesToken(token: String) : Claims  {
-        val apikeybytes = DatatypeConverter.parseBase64Binary(environment!!.getProperty(KEY_PROPERTY))
-
-        val signingKey = SecretKeySpec(apikeybytes, SignatureAlgorithm.HS256.jcaName)
-
-        return Jwts
-                .parser()
-                .setSigningKey(signingKey)
-                .parseClaimsJws(token)
-                .body
-    }
+    fun recuperarInformacoesToken(token: String) : Claims =
+        Jwts
+            .parser()
+            .setSigningKey(secretKey())
+            .parseClaimsJws(token)
+            .body
 
 
-    private fun decode(encodedString: String): String {
-        val decoded = BaseEncoding.base64().decode(encodedString)
-        return String(decoded)
-    }
+    private fun secretKey() : SecretKeySpec =
+        SecretKeySpec(
+            DatatypeConverter
+                .parseBase64Binary(
+                        environment!!.getProperty(KEY_PROPERTY)
+                ),
+            SignatureAlgorithm.HS256.jcaName)
 
-    private fun checkValues(value1: String, value2: String): Boolean {
-        return value1 == value2
-    }
+
+    private fun decode(encodedString: String): String =
+        String(BaseEncoding.base64().decode(encodedString))
+
+    private fun checkValues(value1: String, value2: String): Boolean =
+        value1 == value2
 
     companion object {
-
-        private val KEY_PROPERTY = "secret.key"
-
-        private val LOGGER = Logger.getLogger(SecurityService::class.java.name)
+        private val KEY_PROPERTY = "secr    et.key"
     }
 
 
