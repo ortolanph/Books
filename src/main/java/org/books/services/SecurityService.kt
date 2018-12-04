@@ -55,7 +55,7 @@ class SecurityService {
         value1 == value2
 
     companion object {
-        private val KEY_PROPERTY = "secr    et.key"
+        private val KEY_PROPERTY = "secret.key"
     }
 
 
