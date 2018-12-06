@@ -8,14 +8,13 @@ import org.books.services.JasperReportService
 import org.books.services.Report
 import org.books.services.StorageService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpRequest
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 import java.util.ArrayList
 import java.util.HashMap
+import javax.servlet.http.HttpServletRequest
 
 @RestController
 class ObraController {
@@ -29,9 +28,13 @@ class ObraController {
     @Autowired
     private val storageService: StorageService? = null
 
+    @Autowired
+    private val request : HttpServletRequest? = null
+
     @GetMapping(value = "/api/works/report/{boxid}", produces = arrayOf("application/pdf"))
     @ResponseBody
-    fun relatorioLivros(@PathVariable("boxid") boxid: Int): ResponseEntity<ByteArray> {
+    fun relatorioLivros(@PathVariable("boxid") boxid: Int,
+                        @RequestAttribute("LOGGED_USER_ID") userId : Int): ResponseEntity<ByteArray> {
 
         val obras = ArrayList<Obra>()
 

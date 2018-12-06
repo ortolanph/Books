@@ -26,11 +26,23 @@ class AuthorizationInterceptor : HandlerInterceptorAdapter() {
 
             val infoToken = securityService!!.recuperarInformacoesToken(authorization)
 
-            val owner = ownerRepository!!.findById(infoToken["id"].toString().toInt())
+            val owner = ownerRepository!!.findById(infoToken["id"].toString().toInt()).get()
+
+            if (
+                    securityService.checkValues(owner.id, infoToken["id"].toString().toInt()) &&
+                    securityService.checkValues(owner.name, infoToken["name"].toString()) &&
+                    securityService.checkValues(infoToken["password"].toString(), owner.password.toString()) &&
+                    securityService.checkValues(
+                            securityService.decode(infoToken["password"].toString()),
+                            securityService.decode(owner.password.toString()))
+            ) {
+                request.setAttribute("LOGGED_USER_ID", owner.id)
+            } else {
+                response.status = 401
+                LOGGER.info("USUÁRIO NÃO ENCONTRADO");
+                return false
+            }
         }
-
-
-        LOGGER.info("Gotcha!")
 
         return true
     }

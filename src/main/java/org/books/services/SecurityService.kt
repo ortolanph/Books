@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service
 
 import javax.crypto.spec.SecretKeySpec
 import javax.xml.bind.DatatypeConverter
-import java.security.Key
 import java.util.Date
-import java.util.logging.Logger
 
 @Service
 class SecurityService {
@@ -50,11 +48,11 @@ class SecurityService {
                 environment!!.getProperty(KEY_PROPERTY)
             )
 
-    private fun decode(encodedString: String): String =
-        String(BaseEncoding.base64().decode(encodedString))
+    fun checkValues(value1: String?, value2: String?): Boolean = value1.equals(value2)
 
-    private fun checkValues(value1: String, value2: String): Boolean =
-        value1 == value2
+    fun checkValues(value1: Int?, value2: Int?) : Boolean = value1 == value2
+
+    fun decode(encodedString: String): String = String(BaseEncoding.base64().decode(encodedString))
 
     companion object {
         private val KEY_PROPERTY = "secret.key"
