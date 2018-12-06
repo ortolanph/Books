@@ -28,9 +28,6 @@ class ObraController {
     @Autowired
     private val storageService: StorageService? = null
 
-    @Autowired
-    private val request : HttpServletRequest? = null
-
     @GetMapping(value = "/api/works/report/{boxid}", produces = arrayOf("application/pdf"))
     @ResponseBody
     fun relatorioLivros(@PathVariable("boxid") boxid: Int,
