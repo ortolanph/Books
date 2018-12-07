@@ -34,7 +34,7 @@ class AuthorizationInterceptor : HandlerInterceptorAdapter() {
                     securityService.checkValues(infoToken["password"].toString(), owner.password.toString()) &&
                     securityService.checkValues(
                             securityService.decryptPassord(infoToken["password"].toString(), owner.salt),
-                            securityService.decryptPassord(owner.password.toString(), owner.salt))
+                            securityService.decryptPassord(owner.password, owner.salt))
             ) {
                 request.setAttribute("LOGGED_USER_ID", owner.id)
             } else {

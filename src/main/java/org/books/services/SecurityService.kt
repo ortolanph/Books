@@ -1,16 +1,16 @@
 package org.books.services
 
-import com.google.common.io.BaseEncoding
-import io.jsonwebtoken.*
+import io.jsonwebtoken.Claims
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
 import org.books.entities.Owner
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.env.Environment
 import org.springframework.stereotype.Service
-
+import java.util.*
+import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 import javax.xml.bind.DatatypeConverter
-import java.util.Date
-import javax.crypto.Cipher
 
 @Service
 class SecurityService {
@@ -55,17 +55,17 @@ class SecurityService {
 
     fun encryptPassword(password: String?, key: String?) : String {
         val cipher = generateCipher(key, Cipher.ENCRYPT_MODE)
-        return String(cipher.doFinal(password!!.toByteArray()))
+        return Base64.getEncoder().encodeToString(cipher.doFinal(password!!.toByteArray()))
     }
 
     fun decryptPassord(encryptedPassword: String?, key: String?) : String {
         val cipher = generateCipher(key, Cipher.DECRYPT_MODE)
-        return String(cipher.doFinal(encryptedPassword!!.toByteArray()))
+        return String(cipher.doFinal(Base64.getDecoder().decode(encryptedPassword)))
     }
 
     private fun generateCipher(key: String?, mode: Int) : Cipher {
         val aesKey = SecretKeySpec(key!!.toByteArray(), CRYPT_ALGORITHM)
-        val cipher = Cipher.getInstance("AES")
+        val cipher = Cipher.getInstance(CRYPT_ALGORITHM)
         cipher.init(mode, aesKey)
         return cipher
     }
@@ -73,7 +73,7 @@ class SecurityService {
     companion object {
         private val KEY_PROPERTY = "secret.key"
 
-        private val CRYPT_ALGORITHM = "AES"
+        private val CRYPT_ALGORITHM = "AES/ECB/PKCS5Padding"
     }
 
 
