@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service
 import javax.crypto.spec.SecretKeySpec
 import javax.xml.bind.DatatypeConverter
 import java.util.Date
+import javax.crypto.Cipher
 
 @Service
 class SecurityService {
@@ -52,10 +53,27 @@ class SecurityService {
 
     fun checkValues(value1: Int?, value2: Int?) : Boolean = value1 == value2
 
-    fun decode(encodedString: String): String = String(BaseEncoding.base64().decode(encodedString))
+    fun encryptPassword(password: String?, key: String?) : String {
+        val cipher = generateCipher(key, Cipher.ENCRYPT_MODE)
+        return String(cipher.doFinal(password!!.toByteArray()))
+    }
+
+    fun decryptPassord(encryptedPassword: String?, key: String?) : String {
+        val cipher = generateCipher(key, Cipher.DECRYPT_MODE)
+        return String(cipher.doFinal(encryptedPassword!!.toByteArray()))
+    }
+
+    private fun generateCipher(key: String?, mode: Int) : Cipher {
+        val aesKey = SecretKeySpec(key!!.toByteArray(), CRYPT_ALGORITHM)
+        val cipher = Cipher.getInstance("AES")
+        cipher.init(mode, aesKey)
+        return cipher
+    }
 
     companion object {
         private val KEY_PROPERTY = "secret.key"
+
+        private val CRYPT_ALGORITHM = "AES"
     }
 
 

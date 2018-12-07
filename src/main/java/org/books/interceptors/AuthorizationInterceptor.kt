@@ -33,13 +33,13 @@ class AuthorizationInterceptor : HandlerInterceptorAdapter() {
                     securityService.checkValues(owner.name, infoToken["name"].toString()) &&
                     securityService.checkValues(infoToken["password"].toString(), owner.password.toString()) &&
                     securityService.checkValues(
-                            securityService.decode(infoToken["password"].toString()),
-                            securityService.decode(owner.password.toString()))
+                            securityService.decryptPassord(infoToken["password"].toString(), owner.salt),
+                            securityService.decryptPassord(owner.password.toString(), owner.salt))
             ) {
                 request.setAttribute("LOGGED_USER_ID", owner.id)
             } else {
                 response.status = 401
-                LOGGER.info("USUÁRIO NÃO ENCONTRADO");
+                LOGGER.info("USUÁRIO NÃO ENCONTRADO")
                 return false
             }
         }
