@@ -1,25 +1,25 @@
 @startuml
+package docker_app {
+    actor user
 
-actor user
+    actor developer
 
-actor developer
+    node dockerapp {
+        folder static_page
+        component server
+        database dbserver
 
-node dockerapp {
-    folder static_page
-    component server
-    database dbserver
+        static_page -- server
+        server -- dbserver
+    }
 
-    static_page -- server
-    server -- dbserver
+    user <|-- developer
+
+    user - static_page : 80080
+
+    developer -- server : 80081
+    developer -- server : 80083 (debug)
+    developer -- dbserver : 80082
+    developer -- static_page : 80080
 }
-
-user <|-- developer
-
-user - static_page : 80080
-
-developer -- server : 80081
-developer -- server : 80083 (debug)
-developer -- dbserver : 80082
-developer -- static_page : 80080
-
 @enduml

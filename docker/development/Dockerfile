@@ -9,7 +9,8 @@ ENV \
 
 VOLUME /tmp
 
-EXPOSE 9090 80000
+EXPOSE 9090 80081
+#EXPOSE 9091 80083
 
 COPY ${COMPILED_PACKAGE} /tmp/
 ENTRYPOINT ["java","-Dspring.profiles.active=dev","-Dserver.port=$(SERVER_PORT)","-jar","$(JAR_FILE)"]
