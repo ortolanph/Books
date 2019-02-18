@@ -37,7 +37,7 @@ class OwnerService {
 
     companion object {
 
-        private val KEY_SIZE : Int = 16
+        private val KEY_SIZE: Int = 16
 
     }
 }

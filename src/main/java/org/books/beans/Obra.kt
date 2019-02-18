@@ -18,11 +18,11 @@ class Obra {
 
     override fun toString(): String {
         return StringBuilder("Obra{")
-            .append("id=").append(id)
-            .append(", titulo='").append(titulo).append('\'')
-            .append(", tipo='").append(tipo!!.name).append('\'')
-            .append(", barcode='").append(barcode).append('\'')
-            .append('}')
-            .toString()
+                .append("id=").append(id)
+                .append(", titulo='").append(titulo).append('\'')
+                .append(", tipo='").append(tipo!!.name).append('\'')
+                .append(", barcode='").append(barcode).append('\'')
+                .append('}')
+                .toString()
     }
 }

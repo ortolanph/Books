@@ -1,16 +1,24 @@
 spring:
   jpa:
-    database: POSTGRESQL
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: create-drop
+    database: database: org.hibernate.dialect.H2Dialect
+  #    show-sql: true
+  #    hibernate:
+  #      ddl-auto: create-drop
   datasource:
-    platform: postgres
-    url: jdbc:postgresql://172.17.0.2:5432/library
-    username: comicbookguy
-    password: dev12345
-    driverClassName: org.postgresql.Driver
+#    platform: postgres
+#    url: jdbc:postgresql://172.17.0.2:5432/library
+#    username: comicbookguy
+#    password: dev12345
+#    driverClassName: org.postgresql.Driver
+    platform: org.hibernate.dialect.H2Dialect
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
   main:
     banner-mode: "off"
 
 secret.key: BC8fRW1a50aA50dQ7pxvLLonewOO4ODKnzIhdtNgl7gDjSxEIUuQNwAzafIJU0ew
+h2:
+  console:
+    enabled: true

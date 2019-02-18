@@ -7,13 +7,11 @@ import com.google.zxing.common.BitMatrix
 import com.google.zxing.oned.EAN13Writer
 import com.google.zxing.qrcode.QRCodeWriter
 import org.springframework.stereotype.Service
-
-import javax.imageio.ImageIO
-import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
+import javax.imageio.ImageIO
 
 @Service
 class BarcodeImageService {

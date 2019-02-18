@@ -9,10 +9,10 @@ import java.util.logging.Logger
 @EnableAutoConfiguration
 class Application
 
-    private val LOGGER = Logger.getLogger(Application::class.java.name)
+private val LOGGER = Logger.getLogger(Application::class.java.name)
 
-    fun main(args: Array<String>) {
-        LOGGER.fine("Running App")
-        val ctx = SpringApplication.run(Application::class.java, *args)
-    }
+fun main(args: Array<String>) {
+    LOGGER.fine("Running App")
+    val ctx = SpringApplication.run(Application::class.java, *args)
+}
 

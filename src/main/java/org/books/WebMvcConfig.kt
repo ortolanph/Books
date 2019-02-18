@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class WebMvcConfig : WebMvcConfigurer {
 
     @Bean
-    fun authorizationInterceptor() : AuthorizationInterceptor {
+    fun authorizationInterceptor(): AuthorizationInterceptor {
         return AuthorizationInterceptor()
     }
 

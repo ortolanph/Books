@@ -13,36 +13,36 @@ import javax.servlet.http.HttpServletResponse
 class AuthorizationInterceptor : HandlerInterceptorAdapter() {
 
     @Autowired
-    private val securityService : SecurityService? = null
+    private val securityService: SecurityService? = null
 
     @Autowired
-    private val ownerRepository : OwnerRepository? = null
+    private val ownerRepository: OwnerRepository? = null
 
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
-        val url = request.requestURL.toString()
-
-        if(!url.contains("public")) {
-            val authorization = request!!.getHeader(AUTHORIZATION_HEADER)
-
-            val infoToken = securityService!!.recuperarInformacoesToken(authorization)
-
-            val owner = ownerRepository!!.findById(infoToken["id"].toString().toInt()).get()
-
-            if (
-                    securityService.checkValues(owner.id, infoToken["id"].toString().toInt()) &&
-                    securityService.checkValues(owner.name, infoToken["name"].toString()) &&
-                    securityService.checkValues(infoToken["password"].toString(), owner.password.toString()) &&
-                    securityService.checkValues(
-                            securityService.decryptPassord(infoToken["password"].toString(), owner.salt),
-                            securityService.decryptPassord(owner.password, owner.salt))
-            ) {
-                request.setAttribute("LOGGED_USER_ID", owner.id)
-            } else {
-                response.status = 401
-                LOGGER.info("USUÁRIO NÃO ENCONTRADO")
-                return false
-            }
-        }
+//        val url = request.requestURL.toString()
+//
+//        if (!url.contains("public")) {
+//            val authorization = request!!.getHeader(AUTHORIZATION_HEADER)
+//
+//            val infoToken = securityService!!.recuperarInformacoesToken(authorization)
+//
+//            val owner = ownerRepository!!.findById(infoToken["id"].toString().toInt()).get()
+//
+//            if (
+//                    securityService.checkValues(owner.id, infoToken["id"].toString().toInt()) &&
+//                    securityService.checkValues(owner.name, infoToken["name"].toString()) &&
+//                    securityService.checkValues(infoToken["password"].toString(), owner.password.toString()) &&
+//                    securityService.checkValues(
+//                            securityService.decryptPassord(infoToken["password"].toString(), owner.salt),
+//                            securityService.decryptPassord(owner.password, owner.salt))
+//            ) {
+//                request.setAttribute("LOGGED_USER_ID", owner.id)
+//            } else {
+//                response.status = 401
+//                LOGGER.info("USUÁRIO NÃO ENCONTRADO")
+//                return false
+//            }
+//        }
 
         return true
     }
